@@ -2,26 +2,24 @@ const { Schema, model } = require('mongoose');
 const Tag = require('./Tag');
 
 // Schema to create Post model
-const applicationSchema = new Schema(
+const thoughtSchema = new Schema(
   {
-    published: {
-      type: Boolean,
-      default: false,
+    thoughtText: {
+      type: String,
+      required: true,
+      maxLength: 280,
+      minLength: 1
     },
     createdAt: {
       type: Date,
       default: Date.now,
     },
-    buildSuccess: {
-      type: Boolean,
-      default: true,
-    },
-    description: {
+    
+    username: {
       type: String,
-      minLength: 15,
-      maxLength: 500,
+      required: true
     },
-    tags: [Tag],
+    reactions: [Reaction],
   },
   {
     toJSON: {
@@ -32,14 +30,14 @@ const applicationSchema = new Schema(
 );
 
 // Create a virtual property `getTags` that gets the amount of tags associated with an application
-applicationSchema
-  .virtual('getTags')
+thoughtSchema
+  .virtual('reactionCount')
   // Getter
   .get(function () {
-    return this.tags.length;
+    return this.reactions.length;
   });
 
 // Initialize our Application model
-const Application = model('application', applicationSchema);
+const Thought = model('thought', thoughtSchema);
 
-module.exports = Application;
+module.exports = Thought;
