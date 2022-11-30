@@ -10,5 +10,8 @@ Users are able to react to what other users post as thoughts, and reactions can 
 
 This application was created with help from TAs and tutors in the course.
 
+Here is a link to the walkthrough for the API routes.
+https://watch.screencastify.com/v/pEYXQNIwuAEXSPMq2brZ
+
 A screenshot of the code and routes in Insomnia is shown below.
 ![image](https://user-images.githubusercontent.com/107148691/204699136-10df7e31-d99c-4195-90b4-476380a69c3f.png)
