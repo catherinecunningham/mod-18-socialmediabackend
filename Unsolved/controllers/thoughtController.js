@@ -76,10 +76,10 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // TODO: Add comments to the functionality of the addTag method
-  addTag(req, res) {
+  addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { tags: req.body } },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
       .then((thought) =>
@@ -90,10 +90,10 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // TODO: Add comments to the functionality of the addTag method
-  removeTag(req, res) {
+  removeReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { tags: { tagId: req.params.tagId } } },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
       .then((thought) =>
