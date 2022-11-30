@@ -27,7 +27,7 @@ connection.once('open', async () => {
   await User.collection.insertMany(users);
   await Application.collection.insertMany(applications);
 
-  // loop through the saved applications, for each application we need to generate a application response and insert the application responses
+ 
   console.table(users);
   console.table(applications);
   console.info('Seeding complete! 🌱');
