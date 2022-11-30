@@ -55,4 +55,32 @@ module.exports = {
       .then(() => res.json({ message: 'User and associated apps deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.friendId },
+      { $addToSet: { friends: req.params.id } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No friend with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+    },
+  
+  removeFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: { friendId: req.params.friendId } } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
